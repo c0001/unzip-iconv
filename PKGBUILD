@@ -16,14 +16,14 @@ depends=('bzip2'
          'bash')
 provides=('unzip')
 conflicts=('unzip')
-source=("http://downloads.sourceforge.net/infozip/unzip${pkgver/./}.tar.gz"
-        'CVE-2014-8139.patch::https://bugzilla.redhat.com/attachment.cgi?id=990132'
-        'CVE-2014-8140.patch::https://bugzilla.redhat.com/attachment.cgi?id=969621'
-        'CVE-2014-8141.patch::https://bugzilla.redhat.com/attachment.cgi?id=969625'
-        'CVE-2014-9636_pt1.patch::https://bugzilla.redhat.com/attachment.cgi?id=990649'
-        'CVE-2014-9636_pt2.patch::https://projects.archlinux.org/svntogit/packages.git/plain/trunk/overflow-fsize.patch?h=packages/unzip&id=15e9a8c67463aaf62a718c6e74b1c972de654346'
-        'iconv-utf8+CVE-2015-1315.patch::http://www.conostix.com/pub/adv/06-unzip60-alt-iconv-utf8_CVE-2015-1315.patch'
-        'CVE-2015-7696+CVE-2015-7697_pt1.patch::https://bugzilla.redhat.com/attachment.cgi?id=1073339'
+source=("unzip${pkgver/./}.tar.gz"
+        'CVE-2014-8139.patch'
+        'CVE-2014-8140.patch'
+        'CVE-2014-8141.patch'
+        'CVE-2014-9636_pt1.patch'
+        'CVE-2014-9636_pt2.patch'
+        'iconv-utf8+CVE-2015-1315.patch'
+        'CVE-2015-7696+CVE-2015-7697_pt1.patch'
         'CVE-2015-7696+CVE-2015-7697_pt2.patch')
 sha1sums=('abf7de8a4018a983590ed6f5cbd990d4740f8a22'
           '8ab9aa19e3743245696223035b04cba9d34aa4f6'
