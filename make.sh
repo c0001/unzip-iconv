@@ -13,7 +13,10 @@ makepkg -f .
 [[ ! "$?" -eq 0 ]] && exit
 
 echo -e "\e[32mInstalling as 'unzip-iconv' to home local ...\e[0m"
-[[ -f ~/".local/bin/unzip-iconv" ]] && rm ~/.local/bin/unzip-iconv
+if [[ -f ~/".local/bin/unzip-iconv" ]]
+then
+    rm ~/.local/bin/unzip-iconv
+fi
 [[ ! "$?" -eq 0 ]] && exit
 ln -s "${thisdir}/src/unzip60/unzip" ~/.local/bin/unzip-iconv
 [[ ! "$?" -eq 0 ]] && exit
