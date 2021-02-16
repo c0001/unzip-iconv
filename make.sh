@@ -9,16 +9,31 @@ while [ -h "$thissrc" ]; do # resolve $thissrc until the file is no longer a sym
 done
 thisdir="$( cd -P "$( dirname "$thissrc" )" >/dev/null && pwd )"
 
-makepkg -f .
-[[ ! "$?" -eq 0 ]] && exit
+pkgver=6.0
+use_mkpkgp=$(which makepkg)
+declare thisbinfile
+function build ()
+{
+    if [[ ! -z $use_mkpkgp ]]
+    then
+        makepkg -f .
+        [[ ! "$?" -eq 0 ]] && exit
+        thisbinfile="${thisdir}/src/unzip${pkgver/./}/unzip"
+    else
+        bash "$thisdir"/nature-make.sh
+        [[ ! "$?" -eq 0 ]] && exit
+        thisbinfile="${thisdir}/unzip${pkgver/./}/unzip"
+    fi
+}
 
 echo -e "\e[32mInstalling as 'unzip-iconv' to home local ...\e[0m"
-if [[ -f ~/".local/bin/unzip-iconv" ]]
+if [[ -e ~/".local/bin/unzip-iconv" ]] || [[ -h ~/".local/bin/unzip-iconv" ]]
 then
     rm ~/.local/bin/unzip-iconv
 fi
 [[ ! "$?" -eq 0 ]] && exit
-ln -s "${thisdir}/src/unzip60/unzip" ~/.local/bin/unzip-iconv
+build
+ln -s "${thisbinfile}" ~/.local/bin/unzip-iconv
 [[ ! "$?" -eq 0 ]] && exit
 
 echo -e "\e[32mEverything is OK!\e[0m"
